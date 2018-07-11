@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+<%= link_to 'Edit', edit_grid_path(@grid) %> |
+<%= link_to 'Back', grids_path %>
+</div>
+
+<% grid_width = @grid.width %>
+
+<% @grid.squares.each_with_index do |s, i| %>
+  <%= s.color %>
+
+  <% if (i+1)%grid_width == 0 %>
+    <br>
+  <% end %>
+
+<% end %>

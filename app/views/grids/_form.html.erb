@@ -1,0 +1,28 @@
+<%= form_with(model: grid, local: true) do |form| %>
+  <% if grid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(grid.errors.count, "error") %> prohibited this grid from being saved:</h2>
+
+      <ul>
+      <% grid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= label(:name, "Name") %>
+    <%= form.text_field(:name) %>
+
+    <%= label(:width, "Width") %>
+    <%= form.number_field(:width) %>
+
+    <%= label(:height, "Height") %>
+    <%= form.number_field(:height) %>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>
