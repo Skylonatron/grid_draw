@@ -7,9 +7,14 @@ class GridsController < ApplicationController
     @grids = Grid.all
   end
 
+  def user_index
+    @grids = current_user.grids
+  end
+
   # GET /grids/1
   # GET /grids/1.json
   def show
+    @squares = @grid.squares.order('y ASC').order('x ASC')
   end
 
   # GET /grids/new
@@ -24,17 +29,19 @@ class GridsController < ApplicationController
   # POST /grids
   # POST /grids.json
   def create
-    @grid = Grid.new(grid_params)
 
-    respond_to do |format|
-      if @grid.save
-        format.html { redirect_to @grid, notice: 'Grid was successfully created.' }
-        format.json { render :show, status: :created, location: @grid }
-      else
-        format.html { render :new }
-        format.json { render json: @grid.errors, status: :unprocessable_entity }
-      end
-    end
+    key = rand(10000)
+
+    @grid = Grid.create(
+      device_key: key,
+      name: params[:mac], 
+      width: params[:width],
+      height: params[:height]
+    )
+
+    render json: { id: @grid.id, key: key }.to_json
+
+
   end
 
   # PATCH/PUT /grids/1

@@ -4,12 +4,14 @@ class Grid < ApplicationRecord
 
   has_many :squares, dependent: :destroy
 
+  # belongs_to :user
+
   after_create :create_squares
 
   def create_squares
     (0...width).each do |x|
       (0...height).each do |y|
-        self.squares.create(color: 'white', x: x, y: y)
+        self.squares.create(color: 'black', x: x, y: y)
       end
     end
   end

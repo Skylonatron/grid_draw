@@ -8,6 +8,8 @@ class SquaresController < ApplicationController
     color = params[:color]
 
     if square = grid.squares.find_by(x: x, y: y)
+      # ActionCable.server.broadcast('squares', x: x, y: y, color: color)
+
       square.update(color: color)
       render status: 200, json: { status: 'ok' }.to_json
     else

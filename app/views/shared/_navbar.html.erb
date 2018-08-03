@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <%= content_tag :a, class: "navbar-brand", href: root_path do "LED Draw" end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <%= content_tag :li, class: "nav-item" do %>
+          <%= content_tag :a, class: "nav-link", href: destroy_user_session_path, 'data-method': :delete do %>
+            <%= "Log Out" %>
+          <% end %>
+        <% end %>
+      <% else %>
+          <%= content_tag :li, class: "nav-item #{request.path == '/users/sign_in' ? 'active' : nil}" do %>
+            <%= content_tag :a, class: "nav-link", href: new_user_session_path do %>
+              <%= "Login" %>
+            <% end %>
+          <% end %>
+          <%= content_tag :li, class: "nav-item #{request.path == '/users/sign_up' ? 'active' : nil}" do %>
+            <%= content_tag :a, class: "nav-link", href: new_user_registration_path do %>
+              <%= "Sign Up" %>
+            <% end %>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+</nav>

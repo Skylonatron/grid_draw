@@ -5,13 +5,17 @@
 <%= link_to 'Back', grids_path %>
 </div>
 
+<%= @grid.device_key %>
+
 <% grid_width = @grid.width %>
 
-<% @grid.squares.each_with_index do |s, i| %>
-  <%= s.color %>
+<div>
+  <% @squares.each_with_index do |s, i| %>
+    
+    <%= content_tag :div, style: "background-color:#{s.color};", class: "grid-square", id: "#{s.x},#{s.y}" do end %>
 
-  <% if (i+1)%grid_width == 0 %>
-    <br>
+    <% if (i+1)%grid_width == 0 %>
+      <br>
+    <% end %>
   <% end %>
-
-<% end %>
+</div>
