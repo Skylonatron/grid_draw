@@ -14,7 +14,7 @@ class GridsController < ApplicationController
   # GET /grids/1
   # GET /grids/1.json
   def show
-    @squares = @grid.squares.order('y ASC').order('x ASC')
+    @squares = @grid.squares
   end
 
   # GET /grids/new

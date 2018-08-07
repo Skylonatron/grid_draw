@@ -2,17 +2,20 @@ class Grid < ApplicationRecord
 
   validates_presence_of :name, :width, :height
 
-  has_many :squares, dependent: :destroy
+  serialize :squares
 
   # belongs_to :user
 
-  after_create :create_squares
+  before_create :create_squares
 
   def create_squares
-    (0...width).each do |x|
-      (0...height).each do |y|
-        self.squares.create(color: 'black', x: x, y: y)
-      end
-    end
+
+    column = Array.new(height, "FFFFFF")
+
+    squares_array = Array.new(width, column)
+
+    self.squares = squares_array
+
   end
+
 end

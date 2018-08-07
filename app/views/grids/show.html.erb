@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-<%= link_to 'Edittt', edit_grid_path(@grid) %> |
+<%= link_to 'Edit', edit_grid_path(@grid) %> |
 <%= link_to 'Back', grids_path %>
 </div>
 
@@ -10,12 +10,11 @@
 <% grid_width = @grid.width %>
 
 <div>
-  <% @squares.each_with_index do |s, i| %>
-    
-    <%= content_tag :div, style: "background-color:#{s.color};", class: "grid-square", id: "#{s.x},#{s.y}" do end %>
-
-    <% if (i+1)%grid_width == 0 %>
-      <br>
+  <% (0...@grid.height).each do |y| %>
+    <% (0...@grid.width).each do |x| %>
+      <% color = @squares[x][y] %>
+      <%= content_tag :div, style: "background-color:##{color};", class: "grid-square", id: "#{x},#{y}" do end %>
     <% end %>
+      <br/>
   <% end %>
 </div>
