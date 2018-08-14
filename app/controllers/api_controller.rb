@@ -56,7 +56,10 @@ class ApiController < ApplicationController
 
     grid_info = "#{params[:x]},#{params[:y]},#{params[:color]}"
 
-    uri = URI.parse("http://192.168.0.5:3333/#{grid.id}/#{grid_info}")
+    live_pre = "173.255.221.187"
+    test_pre = "192.168.0.5"
+
+    uri = URI.parse("http://#{live_pre}/#{grid.id}/#{grid_info}")
 
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
