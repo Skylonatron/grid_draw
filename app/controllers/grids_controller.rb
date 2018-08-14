@@ -47,15 +47,9 @@ class GridsController < ApplicationController
   # PATCH/PUT /grids/1
   # PATCH/PUT /grids/1.json
   def update
-    respond_to do |format|
-      if @grid.update(grid_params)
-        format.html { redirect_to @grid, notice: 'Grid was successfully updated.' }
-        format.json { render :show, status: :ok, location: @grid }
-      else
-        format.html { render :edit }
-        format.json { render json: @grid.errors, status: :unprocessable_entity }
-      end
-    end
+    @grid.squares[params[:x]][params[:y]] = params[:color]
+
+    render json: { status: "OK" }
   end
 
   # DELETE /grids/1

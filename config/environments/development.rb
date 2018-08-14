@@ -45,9 +45,11 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # config.web_console.whitelisted_ips = '192.168.0.2'
+
   # Web Sockets
-  config.action_cable.url = "ws://localhost:3000/cable"
-  config.action_cable.allowed_request_origins = ['http://192.168.0.2:3000']
+  # config.action_cable.url = "ws://localhost:3000/cable"
+  # config.action_cable.allowed_request_origins = ['http://192.168.0.2:3000']
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
