@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   # include DeviseTokenAuth::Concerns::SetUserByToken
   protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token, unless: :verify_api
 
   # For mobile posts
+  protect_from_forgery with: :exception, unless: :verify_api
   before_action :authenticate_user!, unless: :verify_api
   wrap_parameters false, unless: :verify_api
 
