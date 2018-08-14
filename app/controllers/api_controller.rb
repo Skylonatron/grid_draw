@@ -56,8 +56,8 @@ class ApiController < ApplicationController
 
     grid_info = "#{params[:x]},#{params[:y]},#{params[:color]}"
 
-    live_pre = "173.255.221.187"
-    test_pre = "192.168.0.5"
+    live_pre = "173.255.221.187:3333"
+    test_pre = "192.168.0.5:3333"
 
     uri = URI.parse("http://#{live_pre}/#{grid.id}/#{grid_info}")
 
