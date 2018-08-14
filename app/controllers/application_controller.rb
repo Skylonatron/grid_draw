@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   # For mobile posts
-  protect_from_forgery with: :exception, unless: :verify_api
   before_action :authenticate_user!, unless: :verify_api
   wrap_parameters false, unless: :verify_api
 
